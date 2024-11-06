@@ -3,8 +3,9 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { InfraStack } from '../lib/infra-stack';
 
+const branchName = process.env.BRANCH_NAME || 'default-branch'; // Fallback to a default value if not set
 const app = new cdk.App();
-new InfraStack(app, 'InfraStack', {
+new InfraStack(app, 'InfraStack'+branchName, {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

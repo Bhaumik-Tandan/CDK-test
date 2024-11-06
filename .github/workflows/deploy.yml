@@ -33,4 +33,4 @@ jobs:
         AWS_DEFAULT_REGION: us-east-1  # Change to your desired region
       run: |
         cd infra  # Navigate to your CDK project directory
-        npx cdk deploy --require-approval never
+        cdk deploy --require-approval never

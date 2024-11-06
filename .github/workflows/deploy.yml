@@ -32,5 +32,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: us-east-1  # Change to your desired region
       run: |
+        npm install
         cd infra  # Navigate to your CDK project directory
         npx cdk deploy --require-approval never

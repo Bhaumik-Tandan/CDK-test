@@ -8,8 +8,15 @@ export class InfraStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
+        // Get the branch name from the environment variable
+        const branchName = process.env.BRANCH_NAME || 'default-branch'; // Fallback to a default value if not set
+
+        // Create a unique S3 bucket name based on the branch name
+        const bucketName = `react-app-bucket-${branchName.replace(/\//g, '-')}`; // Replace slashes to avoid invalid characters
+
         // Create an S3 bucket for hosting the React application
         const bucket = new Bucket(this, 'ReactAppBucket', {
+            bucketName: bucketName,
             websiteIndexDocument: 'index.html', // Main entry point for the website
             websiteErrorDocument: 'index.html',  // Redirect to index.html on error (for client-side routing)
             publicReadAccess: true,               // Allow public access to the bucket

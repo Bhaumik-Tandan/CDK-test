@@ -3,7 +3,7 @@ name: Deploy CDK Application
 on:
   push:
     branches:
-      - master  # Change this to your default branch if different
+      - '*'  # Change this to your default branch if different
 
 jobs:
   deploy:
@@ -26,6 +26,9 @@ jobs:
       run: |
         npm run build  # Run the build script defined in package.json
 
+    - name: Set Branch Name Environment Variable
+      run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV  # Extract branch name and set it as an environment variable
+  
     - name: Deploy CDK
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

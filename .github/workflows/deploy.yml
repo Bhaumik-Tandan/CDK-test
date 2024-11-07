@@ -27,7 +27,7 @@ jobs:
         npm run build  # Run the build script defined in package.json
 
     - name: Set Branch Name Environment Variable
-      run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV  # Extract branch name and set it as an environment variable
+      run: echo "BRANCH_NAME=${GITHUB_REF##*/}" # Extract branch name and set it as an environment variable
   
     - name: Deploy CDK
       env:

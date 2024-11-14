@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      Edited template
+     My teample
     </div>
   );
 }

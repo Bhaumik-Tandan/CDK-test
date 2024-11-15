@@ -3,7 +3,7 @@ name: Deploy CDK Application
 on:
   push:
     branches:
-      - master  
+      - '*' 
 
 jobs:
   deploy:
@@ -25,6 +25,9 @@ jobs:
     - name: Build application
       run: |
         npm run build  # Run the build script defined in package.json
+
+    - name: Set branch name
+      run: echo "BRANCH_NAME=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
   
     - name: Deploy CDK
       env:
